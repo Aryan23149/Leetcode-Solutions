@@ -1,77 +1,72 @@
 class Solution {
-public:
-    //for method 2;
-    int answer(int n,vector<int>& dp){
-        if(n==0||n==1) return 1;
-        int left,right;
-        if(dp[n-1]!=-1){left=dp[n-1];}
-        else{left=answer(n-1,dp);}
-        if(dp[n-2]!=-1){right=dp[n-2];}
-        else{right=answer(n-2,dp);}
-        dp[n]=left+right;
-        return left+right;
-    }
-    int climbStairs(int n) {
-
-
-
-        //method 1: brute force
-        // if(n==0||n==1){return 1;}
-        // int left=climbStairs(n-1);
-        // int right=climbStairs(n-2);
-        // return left+right;
-
-
-
-
-        //method 2: using memoization
-        // vector<int> dp(n+1,-1);
-        // int x=answer(n,dp);
-        // return x;
-
-
-
-
-
-        //method 3: using tabulation
-        // vector<int> dp(n+1,-1);
-        // dp[0]=1;
-        // dp[1]=1;
-        // for(int i=2;i<=n;i++){
-        //     dp[i]=dp[i-1]+dp[i-2];
+    public:
+    
+        // int solveClimbStairsUsingMemoization(int n,vector<int> &tabulatiop){
+        //     if(n<0){
+        //         return 0;
+        //     }
+        //     else if(n==0){
+        //         return 1;
+        //     }
+        //     if(dp[n]!=-1){
+        //         return dp[n];
+        //     }
+        //     dp[n]=solveClimbStairsUsingMemoization(n-1,dp) + 
+        //     solveClimbStairsUsingMemoization(n-2,dp);
+        //     return dp[n];
         // }
-        // return dp[n];
-
-
-
-
-        //method 4: using tabulation with space  optimizATION
-        // if(n<=1){
-        //     return n;
+        // int scUsingOptimizedTabulation(int n ){
+        //     if(n==0 || n== 1){return 1;}
+        //     int prev1=1;
+        //     int prev2=1;
+        //     int current;
+        //     for(int i=2;i<=n;i++){
+        //         current=prev1+prev2;
+        //         prev1=prev2;
+        //         prev2=current;
+        //     }
+        //     return current;
         // }
-        // vector<int> dp (3,-1);
-        // dp[1]=1;dp[0]=1;
-        // for(int i=2;i<n+1;i++){
-        //     dp[2]=dp[1]+dp[0];
-        //     dp[0]=dp[1];
-        //     dp[1]=dp[2];
+        // int solveClimbStairsUsingTabulation(int n,vector<int> & tabulation_dp){
+        //     tabulation_dp[0]=1;
+        //     tabulation_dp[1]=1;
+        //     for(int i=2;i<=n;i++){
+        //         tabulation_dp[i]=tabulation_dp[i-1]+tabulation_dp[i-2];
+        //     }
+        //     return tabulation_dp[n];
         // }
-        // return dp[2];
-
-
-
-    //just playing
-    //     if(n<=2){
-    //         if(n==0||n==1){
-    //             return 1;
-    //         }
-    //         else{
-    //             return n;
-    //         }
-    //     }
-    //     return pow(2,n-1)-1;
-
-
-
-    }
-};
+        int climbStairs(int n) {
+            // brute force approach 
+            // time complexity:O(2 raised n) as solving recurrance takes this much time 
+            // space complexity:O(n) as depth of recursion is n at maximum
+            // if(n<0){
+            //     return 0;
+            // }
+            // else if(n==0){
+            //     return 1;
+            // }
+            // int num_of_ways=climbStairs(n-1)+climbStairs(n-2);
+            // return num_of_ways;
+     
+    
+            // dp solution using memoization approach
+            // time complexity: O(n) // n+1 computations of n+1 arrays
+            // space complexity: O(n+n) because of recursion stack and dp array
+            // vector<int> dp(n+1,-1);
+            // return solveClimbStairsUsingMemoization(n,dp);
+    
+            //dp solution using tabulation
+            // time complexity : O(n) for loop runs once through the dp array till n
+            // space complexity : O(n) for storing dps
+            // if(n<0) return -1;
+            // vector<int> tabulation_dp(n+1,0);
+            // return solveClimbStairsUsingTabulation(n,tabulation_dp);
+    
+            // dp solution using space optimized tabulation
+            // time complexity is O(n)
+            // space complexity is O(1)
+    
+            if(n<0) return -1;
+            return scUsingOptimizedTabulation(n);
+        }
+    };
