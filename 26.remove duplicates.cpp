@@ -40,16 +40,27 @@
 
 //optimal approach two pointer
 class Solution {
-public:
-    int removeDuplicates(vector<int>& nums) {
-    int i=0,j=0,n=nums.size();
-    if(n==1){return 1;}
-    for(int j=1;j<n;j++){
-        if(nums[i]!=nums[j]){
-            i++;
-            nums[i]=nums[j];
+    public:
+        void swap(int i ,int j ,vector<int> & arr){
+            int temp = arr[j];
+            arr[j]=arr[i];
+            arr[i]=temp;
         }
-    }
-    return i+1;
-    }
-};
+        int removeDuplicates(vector<int>& nums) {
+            int n =nums.size();
+            int i=1;
+            int j=1;
+            int unique_element=nums[0];
+            int count =1;
+            while(j<n){
+                int element=nums[j];
+                if(element>unique_element){
+                    swap(i++,j,nums);
+                    count++;
+                    unique_element=element;
+                }
+                j++;
+            }
+            return count;
+        }
+    };
