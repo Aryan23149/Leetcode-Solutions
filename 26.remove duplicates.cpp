@@ -1,6 +1,7 @@
 // class Solution {
 // public:
 //method 1
+    //Time Complexity is O(2N) and Space Complexity is O(N)
     // int removeDuplicates(vector<int>& nums) {
     //     int count=1,n=nums.size();
     //     if(n==1){return 1;}
@@ -22,6 +23,7 @@
 // };
 
 //method 2 brute force using set data structure
+//Time Complexity: O(N+NlogN) Space Complexity : O(N)
 // class Solution {
 // public:
 //     int removeDuplicates(vector<int>& nums) {
@@ -39,6 +41,7 @@
 // };
 
 //optimal approach two pointer
+//Time Complexity is O(N) and Space Complexity is O(1)
 class Solution {
     public:
         void swap(int i ,int j ,vector<int> & arr){
