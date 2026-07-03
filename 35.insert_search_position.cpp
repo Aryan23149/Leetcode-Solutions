@@ -24,5 +24,9 @@ public:
         //     }
         // }
         // return ans;
+
+        // using method 2 with stl
+        // TC: O(LOG N ) SC: O(1)
+        return lower_bound(nums.begin(),nums.end(),target)-nums.begin();
     }
 };
